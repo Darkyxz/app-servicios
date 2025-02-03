@@ -5,7 +5,7 @@ load_dotenv()
 
 class Config:
     # Otras configuraciones (opcional)
-    DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+    DEBUG = os.getenv('DEBUG', 'False').lower() == 'false'
      # Configuración de Flask
     SECRET_KEY = os.getenv('SECRET_KEY', 'una_clave_secreta_por_defecto')  # Usa una clave por defecto si no está en .env
     # Configuración de MercadoPago
