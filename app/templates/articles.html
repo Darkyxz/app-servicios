@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/articles">Articles</a>
+        <a href="/payment">Payment</a>
+    </div>
+    <div class="container">
+        <h1>Articles</h1>
+        <div class="articles-list">
+            {% for article in articles %}
+            <div class="card">
+                <img src="{{ article.image_url }}" alt="{{ article.title }}">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <p class="price">${{ article.price }}</p>
+                <p>Quantity: {{ article.quantity }}</p>
+                <form method="POST" action="{{ url_for('add_to_cart') }}">
+                    <input type="hidden" name="article_id" value="{{ article._id }}">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

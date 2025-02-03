@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/articles">Articles</a>
+        <a href="/payment">Payment</a>
+    </div>
+    <div class="container">
+        <h1>Payment</h1>
+        <div class="payment-form">
+            <form id="payment-form">
+                <div id="cardNumber"></div>
+                <div id="expirationDate"></div>
+                <div id="securityCode"></div>
+                <label for="cardholderName">Cardholder Name</label>
+                <input type="text" id="cardholderName" placeholder="Cardholder Name" required>
+                <label for="issuer">Issuer</label>
+                <select id="issuer" required>
+                    <option value="">Select issuer</option>
+                </select>
+                <label for="installments">Installments</label>
+                <select id="installments" required>
+                    <option value="">Select installments</option>
+                </select>
+                <button type="submit">Pay</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const mp = new MercadoPago('{{ mercadopago_public_key }}', {
+            locale: 'es-AR'
+        });
+
+        const paymentForm = document.getElementById('payment-form');
+        const preferenceId = '{{ preference_id }}';
+
+        mp.checkout({
+            preferenceId: preferenceId,
+            render: {
+                container: '#cardNumber',
+                label: 'Card Number',
+                placeholder: '1234 1234 1234 1234'
+            }
+        });
+
+        paymentForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = {
+                cardholderName: document.getElementById('cardholderName').value,
+                issuer: document.getElementById('issuer').value,
+                installments: document.getElementById('installments').value
+            };
+            try {
+                const response = await mp.createPayment({
+                    formData,
+                    preferenceId
+                });
+                if (response.status === 'approved') {
+                    window.location.href = '/payment/success';
+                } else {
+                    window.location.href = '/payment/failure';
+                }
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                alert('An error occurred while processing the payment.');
+            }
+        });
+    </script>
+</body>
+</html>
