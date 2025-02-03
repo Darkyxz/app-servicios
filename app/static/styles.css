@@ -1,0 +1,251 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #444;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #007BFF;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para las tarjetas de productos */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin: 15px 0 10px;
+    font-size: 1.5em;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.card .price {
+    font-size: 1.2em;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Estilos para el formulario de pago */
+.payment-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.payment-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.payment-form input,
+.payment-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.payment-form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+
+.payment-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para las páginas de respuesta de pago */
+.payment-response {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.payment-response h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.payment-response p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.payment-response a {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.payment-response a:hover {
+    background-color: #0056b3;
+}
+/* Estilos para el dashboard */
+.dashboard {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.dashboard h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007BFF;
+    text-align: center;
+}
+
+.dashboard form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard label {
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #444;
+}
+
+.dashboard input,
+.dashboard textarea,
+.dashboard select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.dashboard textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.dashboard button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.dashboard button:hover {
+    background-color: #0056b3;
+}
+
+.dashboard .message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.dashboard .message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.dashboard .message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid #007BFF;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-text {
+    color: #007BFF;
+    font-size: 14px;
+}

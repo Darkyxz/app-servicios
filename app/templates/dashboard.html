@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/articles">Articles</a>
+        <a href="/payment">Payment</a>
+    </div>
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="profile-section">
+            <div class="profile-image-container" onclick="document.getElementById('profile-image-input').click()">
+                {% if current_user.profile_image_url %}
+                    <img src="{{ current_user.profile_image_url }}" alt="Profile Image" class="profile-image">
+                {% else %}
+                    <div class="placeholder-text">Click to upload image</div>
+                {% endif %}
+            </div>
+            <form id="profile-image-form" method="POST" action="{{ url_for('upload_profile_image') }}" enctype="multipart/form-data" style="display: none;">
+                <input type="file" id="profile-image-input" name="profile_image" accept="image/*" onchange="document.getElementById('profile-image-form').submit()">
+            </form>
+            <h2>{{ current_user.username }}</h2>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" placeholder="Product Title" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Product Description" required></textarea>
+
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" placeholder="Product Price" step="0.01" required>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Product Quantity" required>
+
+            <label for="image">Product Image</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+
+            <button type="submit">Publish Article</button>
+        </form>
+
+        <!-- Lista de artículos publicados por el usuario -->
+        <h2>Your Articles</h2>
+        <div class="articles-list">
+            {% for article in articles %}
+            <div class="card">
+                <img src="{{ article.image_url }}" alt="{{ article.title }}">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <p class="price">${{ article.price }}</p>
+                <p>Quantity: {{ article.quantity }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Mensajes de éxito o error -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/articles">Articles</a>
+        <a href="/payment">Payment</a>
+    </div>
+    <div class="container">
+        <h1>Payment Failed</h1>
+        <p>There was an issue processing your payment. Please try again.</p>
+        <a href="/payment">Retry Payment</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        {% if current_user.is_authenticated %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+        {% endif %}
+        <a href="/articles">Articles</a>
+        <a href="/payment">Payment</a>
+    </div>
+    <div class="container">
+        <h1>Welcome to the Home Page</h1>
+    {% if current_user.is_authenticated %}
+        <p>Hello, {{ current_user.username }}! You are logged in.</p>
+        <p>Session ID: {{ session['user_session_id'] }}</p>
+    {% else %}
+        <p>Please <a href="/register">register</a> or <a href="/login">login</a> to access the dashboard and make purchases.</p>
+    {% endif %}
+    </div>
+</body>
+</html>
